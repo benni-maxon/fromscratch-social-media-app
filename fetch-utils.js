@@ -42,3 +42,25 @@ export async function upsertProfile(profile) {
     // console.log('response- upsert', response);
     return checkError(response);
 }
+export async function getProfileByUser(user_id) {
+    const response = await client.from('profiles').select('*').match({ user_id }).maybeSingle();
+    return response;
+}
+export async function getProfileById(id) {
+    const response = await client.from('profiles').select('*').match({ id }).single();
+    return checkError(response);
+}
+
+export async function uploadImage(imagePath, imageFile) {
+    const bucket = client.storage.from('avatars');
+    const response = await bucket.upload(imagePath, imageFile, {
+        cacheControl: '3600',
+        upsert: true,
+    });
+
+    if (response.error) {
+        return null;
+    }
+    const url = `${SUPABASE_URL}/storage/v1/object/public/${response.data.Key}`;
+    return url;
+}
