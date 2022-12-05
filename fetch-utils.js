@@ -36,8 +36,7 @@ function checkError(response) {
 export async function upsertProfile(profile) {
     const response = await client
         .from('profiles')
-        .update(profile)
-        .match({ user_id: profile.user_id })
+        .upsert(profile, { onConflict: 'user_id' })
         .single();
     // console.log('response- upsert', response);
     return checkError(response);
