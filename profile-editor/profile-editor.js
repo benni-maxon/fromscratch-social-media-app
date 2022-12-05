@@ -1,3 +1,4 @@
+import '../auth/user.js';
 import { getProfileById, getUser, uploadImage, upsertProfile } from '../fetch-utils.js';
 
 const errorDisplay = document.getElementById('error-display');
