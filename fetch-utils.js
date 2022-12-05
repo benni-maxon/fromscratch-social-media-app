@@ -28,3 +28,17 @@ export async function signOutUser() {
 }
 
 /* Data functions */
+function checkError(response) {
+    // eslint-disable-next-line no-console
+    return response.error ? console.error(response.error) : response.data;
+}
+
+export async function upsertProfile(profile) {
+    const response = await client
+        .from('profiles')
+        .update(profile)
+        .match({ user_id: profile.user_id })
+        .single();
+    // console.log('response- upsert', response);
+    return checkError(response);
+}
