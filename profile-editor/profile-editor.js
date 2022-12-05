@@ -1,5 +1,11 @@
 import '../auth/user.js';
-import { getProfileById, getUser, uploadImage, upsertProfile } from '../fetch-utils.js';
+import {
+    getProfileById,
+    getProfileByUser,
+    getUser,
+    uploadImage,
+    upsertProfile,
+} from '../fetch-utils.js';
 
 const errorDisplay = document.getElementById('error-display');
 const preview = document.getElementById('preview');
@@ -15,7 +21,7 @@ let profile = null;
 const user = getUser();
 
 window.addEventListener('load', async () => {
-    const response = await getProfileById(user.id);
+    const response = await getProfileByUser(user.id);
     // console.log('response', response);
     error = response.error;
     profile = response.data;
@@ -57,7 +63,6 @@ profileForm.addEventListener('submit', async (e) => {
         const url = await uploadImage(imagePath, imageFile);
 
         profileObj.avatar_url = url;
-
     }
 
     const response = await upsertProfile(profileObj);
@@ -71,7 +76,6 @@ profileForm.addEventListener('submit', async (e) => {
     } else {
         location.assign('/');
     }
-
 });
 
 avatarInput.addEventListener('change', () => {
