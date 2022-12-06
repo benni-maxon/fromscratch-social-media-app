@@ -10,7 +10,8 @@ import {
 const errorDisplay = document.getElementById('error-display');
 const preview = document.getElementById('preview');
 const profileForm = document.getElementById('profile-form');
-const updateButton = profileForm.querySelector('button');
+const deleteButton = document.getElementById('delete-button');
+const updateButton = profileForm.querySelector('#update-profile');
 const userNameInput = profileForm.querySelector('[name=username]');
 const avatarInput = profileForm.querySelector('[name=avatar]');
 const bioInput = profileForm.querySelector('[name=bio]');
@@ -88,3 +89,5 @@ avatarInput.addEventListener('change', () => {
         preview.src = '/assets/avatar.jpg';
     }
 });
+
+deleteButton.addEventListener('click', async () => {});

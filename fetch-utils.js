@@ -90,3 +90,13 @@ export async function decrementSparkles(id) {
 
     return checkError(response);
 }
+
+export async function deleteProfile(user_id) {
+    const response = await client.from('profiles').delete().match({ user_id }).single();
+    return checkError(response);
+}
+
+export async function deleteBunny(id) {
+    // delete a single bunny using the id argument
+    const response = await client.from('fuzzy_bunnies').delete().match({ id: id }).single();
+    return checkError(response);
