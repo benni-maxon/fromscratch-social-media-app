@@ -68,3 +68,25 @@ export async function uploadImage(imagePath, imageFile) {
     const url = `${SUPABASE_URL}/storage/v1/object/public/${response.data.Key}`;
     return url;
 }
+
+export async function incrementSparkles(id) {
+    const profile = await getProfileById(id);
+
+    const response = await client
+        .from('profiles')
+        .update({ sparkles: profile.sparkles + 1 })
+        .match({ id });
+
+    return checkError(response);
+}
+
+export async function decrementSparkles(id) {
+    const profile = await getProfileById(id);
+
+    const response = await client
+        .from('profiles')
+        .update({ sparkles: profile.sparkles - 1 })
+        .match({ id });
+
+    return checkError(response);
+}
