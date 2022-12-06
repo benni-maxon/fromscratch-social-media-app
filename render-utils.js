@@ -7,6 +7,7 @@ export function renderProfile(profileObject) {
     div.classList.add('profile-list-item');
     img.classList.add('avatar');
     a.classList.add('profile-link');
+    p.classList.add('list-sparkle');
 
     img.src = profileObject.avatar_url;
     img.alt = 'avatar';
