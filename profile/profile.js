@@ -3,6 +3,7 @@ import { decrementSparkles, getProfileById, incrementSparkles } from '../fetch-u
 const imgEl = document.querySelector('#avatar-img');
 const usernameHeaderEl = document.querySelector('.username-header');
 const profileDetailEl = document.querySelector('.profile-detail');
+const profileBioEl = document.querySelector('.profile-bio');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -20,6 +21,7 @@ window.addEventListener('load', async () => {
 
 async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
+    profileBioEl.textContent = '';
 
     const profile = await getProfileById(id);
     // console.log('profile', profile);
@@ -30,18 +32,21 @@ async function fetchAndDisplayProfile() {
 
     const profileBio = renderBio(profile);
 
-    profileDetailEl.append(profileSparkles, profileBio);
+    profileDetailEl.append(profileSparkles);
+    profileBioEl.append(profileBio);
 }
 
 function renderSparkles({ sparkles, username, id }) {
     const p = document.createElement('p');
     const downButton = document.createElement('button');
     const upButton = document.createElement('button');
+    const buttons = document.createElement('div');
 
+    buttons.append(downButton, upButton);
     const profileSparkles = document.createElement('div');
 
     profileSparkles.classList.add('profile-sparkles');
-    profileSparkles.append(p, upButton, downButton);
+    profileSparkles.append(p, buttons);
 
     downButton.textContent = '➖';
     upButton.textContent = '➕';
