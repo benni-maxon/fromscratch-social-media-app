@@ -1,20 +1,20 @@
 export function renderProfile(profileObject) {
-    const div = document.createElement('div');
+    const a = document.createElement('a');
     const img = document.createElement('img');
     const p = document.createElement('p');
-    const a = document.createElement('a');
+    const h3 = document.createElement('h3');
 
-    div.classList.add('profile-list-item');
+    a.classList.add('profile-list-item');
     img.classList.add('avatar');
-    a.classList.add('profile-link');
+    h3.classList.add('profile-link');
     p.classList.add('list-sparkle');
 
     img.src = profileObject.avatar_url;
     img.alt = 'avatar';
     p.textContent = `✨${profileObject.sparkles}`;
-    a.textContent = `${profileObject.username}`;
+    h3.textContent = `${profileObject.username}`;
     a.href = `../profile/?id=${profileObject.id}`;
 
-    div.append(img, a, p);
-    return div;
+    a.append(img, h3, p);
+    return a;
 }
