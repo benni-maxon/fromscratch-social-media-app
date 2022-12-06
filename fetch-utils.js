@@ -50,6 +50,11 @@ export async function getProfileById(id) {
     return checkError(response);
 }
 
+export async function getProfiles() {
+    const response = await client.from('profiles').select();
+    return checkError(response);
+}
+
 export async function uploadImage(imagePath, imageFile) {
     const bucket = client.storage.from('avatars');
     const response = await bucket.upload(imagePath, imageFile, {
