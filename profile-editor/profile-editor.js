@@ -75,8 +75,17 @@ avatarInput.addEventListener('change', () => {
 });
 
 deleteButton.addEventListener('click', async () => {
-    await deleteProfile(user.id);
-    await displayProfile();
+    const response = await deleteProfile(user.id);
+
+    error = response.error;
+
+    if (error) {
+        errorDisplay.textContent = error.message;
+        updateButton.disabled = false;
+        updateButton.textContent = 'Update Profile';
+    } else {
+        location.assign('/');
+    }
 });
 
 async function displayProfile() {

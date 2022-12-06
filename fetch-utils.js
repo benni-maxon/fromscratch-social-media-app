@@ -93,5 +93,5 @@ export async function decrementSparkles(id) {
 
 export async function deleteProfile(user_id) {
     const response = await client.from('profiles').delete().match({ user_id }).single();
-    return checkError(response);
+    return response;
 }
