@@ -28,6 +28,7 @@
         <!-- css -->
         <link rel="stylesheet" href="/styles/reset.css" />
         <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/profile-editor.css" />
         <!-- add link for page specific css -->
     </head>
 
@@ -43,7 +44,7 @@
 
         <main>
             <form id="profile-form">
-                <label>
+                <label class="labels">
                     Username
                     <input
                         name="username"
@@ -52,19 +53,24 @@
                         placeholder="choose a username..."
                     />
                 </label>
-                <label>
+                <label class="labels">
                     Bio
-                    <textarea name="bio" placeholder="Your information here..."></textarea>
+                    <textarea
+                        class="text-area"
+                        name="bio"
+                        rows="5"
+                        placeholder="Your information here..."
+                    ></textarea>
                 </label>
 
-                <label>
+                <label class="labels">
                     Avatar
                     <input type="file" name="avatar" placeholder="upload an image..." />
                 </label>
 
                 <img id="preview" class="avatar" alt="avatar preview" src="/assets/avatar.jpg" />
 
-                <button type="submit">Update Profile</button>
+                <button id="update-profile" type="submit">Update Profile</button>
 
                 <p id="error-display"></p>
             </form>

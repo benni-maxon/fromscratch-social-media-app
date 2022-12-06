@@ -1,0 +1,20 @@
+#profile-form {
+    display: grid;
+}
+
+.labels {
+    margin: 30px;
+    padding: 20px;
+    justify-content: start;
+}
+
+.avatar {
+    min-width: 200px;
+    min-height: 200px;
+    margin-left: 60px;
+}
+#update-profile {
+    max-width: 150px;
+    margin-top: 10px;
+    margin-left: 80px;
+}
