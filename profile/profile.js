@@ -28,7 +28,9 @@ async function fetchAndDisplayProfile() {
 
     const profileSparkles = renderSparkles(profile);
 
-    profileDetailEl.append(profileSparkles);
+    const profileBio = renderBio(profile);
+
+    profileDetailEl.append(profileSparkles, profileBio);
 }
 
 function renderSparkles({ sparkles, username, id }) {
@@ -41,8 +43,8 @@ function renderSparkles({ sparkles, username, id }) {
     profileSparkles.classList.add('profile-sparkles');
     profileSparkles.append(p, upButton, downButton);
 
-    downButton.textContent = 'downvote user ⬇️';
-    upButton.textContent = 'upvote user ⬆️';
+    downButton.textContent = '➖';
+    upButton.textContent = '➕';
     p.classList.add('profile-name');
 
     p.textContent = `${username} has ${sparkles} ✨`;
@@ -57,4 +59,10 @@ function renderSparkles({ sparkles, username, id }) {
     });
 
     return profileSparkles;
+}
+function renderBio({ bio }) {
+    const p = document.createElement('p');
+    p.classList.add('bio');
+    p.textContent = bio;
+    return p;
 }
