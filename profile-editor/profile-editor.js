@@ -1,5 +1,6 @@
 import '../auth/user.js';
 import {
+    deleteProfile,
     getProfileById,
     getProfileByUser,
     getUser,
@@ -22,24 +23,7 @@ let profile = null;
 const user = getUser();
 
 window.addEventListener('load', async () => {
-    const response = await getProfileByUser(user.id);
-    // console.log('response', response);
-    error = response.error;
-    profile = response.data;
-
-    if (error) {
-        errorDisplay.textContent = error.message;
-    } else {
-        if (profile) {
-            userNameInput.value = profile.username;
-            if (profile.avatar_url) {
-                preview.src = profile.avatar_url;
-            }
-            if (profile.bio) {
-                bioInput.value = profile.bio;
-            }
-        }
-    }
+    await displayProfile();
 });
 
 profileForm.addEventListener('submit', async (e) => {
@@ -90,4 +74,27 @@ avatarInput.addEventListener('change', () => {
     }
 });
 
-deleteButton.addEventListener('click', async () => {});
+deleteButton.addEventListener('click', async () => {
+    await deleteProfile(user.id);
+    await displayProfile();
+});
+
+async function displayProfile() {
+    const response = await getProfileByUser(user.id);
+    // console.log('response', response);
+    error = response.error;
+    profile = response.data;
+    if (error) {
+        errorDisplay.textContent = error.message;
+    } else {
+        if (profile) {
+            userNameInput.value = profile.username;
+            if (profile.avatar_url) {
+                preview.src = profile.avatar_url;
+            }
+            if (profile.bio) {
+                bioInput.value = profile.bio;
+            }
+        }
+    }
+}
