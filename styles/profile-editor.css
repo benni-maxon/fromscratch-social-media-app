@@ -10,6 +10,10 @@
     max-width: 350px;
 }
 
+.text-area {
+    resize: none;
+}
+
 .avatar {
     min-width: 200px;
     min-height: 200px;

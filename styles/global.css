@@ -1,6 +1,6 @@
 :root {
     --background: #d0d1ff;
-    --header-background: #c0fdff;
+    --header-background: #ffcbf2;
     --text-color: rgb(7, 5, 68);
     --label-color: rgb(75, 102, 98);
     --placeholder-color: rgb(136, 136, 153);
@@ -39,6 +39,7 @@ body {
 }
 
 .page-header .title {
+    margin-left: 160px;
     font-size: 1.3em;
     font-weight: 800;
     flex-grow: 2;

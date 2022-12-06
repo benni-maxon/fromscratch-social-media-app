@@ -4,6 +4,7 @@ const imgEl = document.querySelector('#avatar-img');
 const usernameHeaderEl = document.querySelector('.username-header');
 const profileDetailEl = document.querySelector('.profile-detail');
 const profileBioEl = document.querySelector('.profile-bio');
+const titleEl = document.querySelector('.title');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -22,11 +23,13 @@ window.addEventListener('load', async () => {
 async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     profileBioEl.textContent = '';
+    titleEl.textContent = '';
 
     const profile = await getProfileById(id);
     // console.log('profile', profile);
     imgEl.src = profile.avatar_url;
     usernameHeaderEl.textContent = profile.username;
+    titleEl.textContent = `${profile.username}'s Profile`;
 
     const profileSparkles = renderSparkles(profile);
 
