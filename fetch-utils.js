@@ -46,7 +46,7 @@ export async function getProfileByUser(user_id) {
     return response;
 }
 export async function getProfileById(id) {
-    const response = await client.from('profiles').select('*').match({ id }).single();
+    const response = await client.from('profiles').select('*, messages(*)').match({ id }).single();
     return checkError(response);
 }
 
@@ -95,3 +95,12 @@ export async function deleteProfile(user_id) {
     const response = await client.from('profiles').delete().match({ user_id }).single();
     return response;
 }
+
+export async function createMessage(message) {
+    const response = await client.from('messages').insert(message).single();
+    return checkError(response);
+}
+
+// export function onMessage(profileId, handleMessage) {
+//     client.from(`messages:recipient_id=eq.${profileId}`).on('INSERT', handleMessage).subscribe();
+// }
