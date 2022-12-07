@@ -44,7 +44,7 @@ export function renderMessages(profile) {
 
         const senderSpan = document.createElement('span');
         senderSpan.classList.add('from');
-        senderSpan.textContent = profile.message[i].sender;
+        senderSpan.textContent = profile.messages[i].sender;
 
         const dateSpan = document.createElement('span');
         dateSpan.classList.add('created-date');

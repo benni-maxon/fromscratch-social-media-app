@@ -15,11 +15,11 @@ const profileBioEl = document.querySelector('.profile-bio');
 const profileMessagesEl = document.querySelector('.profile-messages');
 const titleEl = document.querySelector('.title');
 const usernameEl = document.querySelector('.username');
-const messageForm = document.querySelector('message-form');
+const messageForm = document.querySelector('.message-form');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
-const user = getUser();
+// const user = getUser();
 
 window.addEventListener('load', async () => {
     //Error Handling
@@ -37,6 +37,8 @@ messageForm.addEventListener('submit', async (e) => {
     const data = new FormData(messageForm);
     const user = getUser();
     const senderProfile = await getProfileByUser(user.id);
+    console.log('user', user);
+    console.log('senderProfile', senderProfile);
     if (!senderProfile) {
         alert('Make a profile first!');
         location.assign('/');
