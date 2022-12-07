@@ -1,4 +1,11 @@
-import { decrementSparkles, getProfileById, getUser, incrementSparkles } from '../fetch-utils.js';
+import {
+    createMessage,
+    decrementSparkles,
+    getProfileById,
+    getProfileByUser,
+    getUser,
+    incrementSparkles,
+} from '../fetch-utils.js';
 import { renderMessages } from '../render-utils.js';
 
 const imgEl = document.querySelector('#avatar-img');
@@ -8,6 +15,7 @@ const profileBioEl = document.querySelector('.profile-bio');
 const profileMessagesEl = document.querySelector('.profile-messages');
 const titleEl = document.querySelector('.title');
 const usernameEl = document.querySelector('.username');
+const messageForm = document.querySelector('message-form');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -22,6 +30,25 @@ window.addEventListener('load', async () => {
         return;
     }
     fetchAndDisplayProfile();
+});
+
+messageForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(messageForm);
+    const user = getUser();
+    const senderProfile = await getProfileByUser(user.id);
+    if (!senderProfile) {
+        alert('Make a profile first!');
+        location.assign('/');
+    } else {
+        await createMessage({
+            text: data.get('message'),
+            sender: senderProfile.data.username,
+            recipient_id: id,
+            user_id: user.id,
+        });
+        messageForm.reset();
+    }
 });
 
 async function fetchAndDisplayProfile() {
