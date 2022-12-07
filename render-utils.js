@@ -9,7 +9,11 @@ export function renderProfile(profileObject) {
     h3.classList.add('profile-link');
     p.classList.add('list-sparkle');
 
-    img.src = profileObject.avatar_url;
+    if (profileObject.avatar_url) {
+        img.src = profileObject.avatar_url;
+    } else {
+        img.src = '/assets/sadface.png';
+    }
     img.alt = 'avatar';
     p.textContent = `✨${profileObject.sparkles}`;
     h3.textContent = `${profileObject.username}`;
@@ -64,5 +68,4 @@ export function renderMessages(profile) {
     }
 
     return ul;
-
 }

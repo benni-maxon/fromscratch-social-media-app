@@ -32,7 +32,11 @@ async function fetchAndDisplayProfile() {
 
     const profile = await getProfileById(id);
     // console.log('profile', profile);
-    imgEl.src = profile.avatar_url;
+    if (profile.avatar_url) {
+        imgEl.src = profile.avatar_url;
+    } else {
+        imgEl.src = '/assets/sadface.png';
+    }
     usernameHeaderEl.textContent = profile.username;
     titleEl.textContent = `${profile.username}'s Profile`;
     usernameEl.textContent = profile.username;
