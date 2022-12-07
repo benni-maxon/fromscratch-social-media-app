@@ -1,13 +1,17 @@
-import { decrementSparkles, getProfileById, incrementSparkles } from '../fetch-utils.js';
+import { decrementSparkles, getProfileById, getUser, incrementSparkles } from '../fetch-utils.js';
+import { renderMessages } from '../render-utils.js';
 
 const imgEl = document.querySelector('#avatar-img');
 const usernameHeaderEl = document.querySelector('.username-header');
 const profileDetailEl = document.querySelector('.profile-detail');
 const profileBioEl = document.querySelector('.profile-bio');
+const profileMessagesEl = document.querySelector('.profile-messages');
 const titleEl = document.querySelector('.title');
+const usernameEl = document.querySelector('.username');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
+const user = getUser();
 
 window.addEventListener('load', async () => {
     //Error Handling
@@ -23,6 +27,7 @@ window.addEventListener('load', async () => {
 async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     profileBioEl.textContent = '';
+    profileMessagesEl.textContent = '';
     titleEl.textContent = '';
 
     const profile = await getProfileById(id);
@@ -30,13 +35,15 @@ async function fetchAndDisplayProfile() {
     imgEl.src = profile.avatar_url;
     usernameHeaderEl.textContent = profile.username;
     titleEl.textContent = `${profile.username}'s Profile`;
+    usernameEl.textContent = profile.username;
 
     const profileSparkles = renderSparkles(profile);
-
     const profileBio = renderBio(profile);
+    const messagesList = renderMessages(profile);
 
     profileDetailEl.append(profileSparkles);
     profileBioEl.append(profileBio);
+    profileMessagesEl.append(messagesList);
 }
 
 function renderSparkles({ sparkles, username, id }) {
