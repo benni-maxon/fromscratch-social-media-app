@@ -101,6 +101,6 @@ export async function createMessage(message) {
     return checkError(response);
 }
 
-// export function onMessage(profileId, handleMessage) {
-//     client.from(`messages:recipient_id=eq.${profileId}`).on('INSERT', handleMessage).subscribe();
-// }
+export function onMessage(profileId, handleMessage) {
+    client.from(`messages:recipient_id=eq.${profileId}`).on('INSERT', handleMessage).subscribe();
+}
