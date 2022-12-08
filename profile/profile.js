@@ -22,6 +22,7 @@ const messageForm = document.querySelector('.message-form');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
+const user = getUser();
 
 window.addEventListener('load', async () => {
     //Error Handling
@@ -43,10 +44,9 @@ window.addEventListener('load', async () => {
 messageForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(messageForm);
-    const user = getUser();
     const senderProfile = await getProfileByUser(user.id);
-    console.log('user', user);
-    console.log('senderProfile', senderProfile);
+    // console.log('user', user);
+    // console.log('senderProfile', senderProfile);
     if (!senderProfile) {
         alert('Make a profile first!');
         location.assign('/');
@@ -68,7 +68,8 @@ async function fetchAndDisplayProfile() {
     titleEl.textContent = '';
 
     const profile = await getProfileById(id);
-    // console.log('profile', profile);
+    const sender = await getProfileByUser(user.id);
+    console.log('profile', profile);
     if (profile.avatar_url) {
         imgEl.src = profile.avatar_url;
     } else {
@@ -80,7 +81,7 @@ async function fetchAndDisplayProfile() {
     messageFeedEl.textContent = `Message Feed for ${profile.username}`;
     const profileSparkles = renderSparkles(profile);
     const profileBio = renderBio(profile);
-    const messagesList = renderMessages(profile);
+    const messagesList = renderMessages(profile, sender);
 
     profileDetailEl.append(profileSparkles);
     profileBioEl.append(profileBio);

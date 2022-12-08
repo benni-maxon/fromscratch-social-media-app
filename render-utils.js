@@ -1,3 +1,5 @@
+import { getProfileByUser } from './fetch-utils.js';
+
 export function renderProfile(profile) {
     const a = document.createElement('a');
     const img = document.createElement('img');
@@ -24,7 +26,7 @@ export function renderProfile(profile) {
     return a;
 }
 
-export function renderMessages(profile) {
+export function renderMessages(profile, sender) {
     const ul = document.createElement('ul');
 
     ul.classList.add('messages');
@@ -38,17 +40,20 @@ export function renderMessages(profile) {
         const div = document.createElement('div');
         div.classList.add('message-info');
 
-        // const img = document.createElement('img');
-        // img.classList.add('avatar-thumbnail');
+        const img = document.createElement('img');
+        img.classList.add('avatar-thumbnail');
         // img.src = profile.messages[i].sender;
         // img.alt = 'avatar';
 
-        // if (profile.data.avatar_url) {
-        //     img.src = profile.data.avatar_url;
-        // } else {
-        //     img.src = '/assets/sadface.png';
-        // }
-        // img.alt = 'avatar';
+        console.log(sender);
+        console.log(sender.data.avatar_url);
+
+        if (sender.data.avatar_url) {
+            img.src = sender.data.avatar_url;
+        } else {
+            img.src = '/assets/sadface.png';
+        }
+        img.alt = 'avatar';
 
         const senderSpan = document.createElement('span');
         senderSpan.classList.add('from');
@@ -68,7 +73,7 @@ export function renderMessages(profile) {
         text.classList.add('text');
         text.textContent = profile.messages[i].text;
 
-        div.append(senderSpan, dateSpan);
+        div.append(img, senderSpan, dateSpan);
 
         li.append(div, text);
 
