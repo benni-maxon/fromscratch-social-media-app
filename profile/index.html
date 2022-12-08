@@ -43,21 +43,26 @@
 
         <main>
             <section>
-                <div class="profile-header">
-                    <img id="avatar-img" class="avatar" alt="avatar" src="/assets/avatar.jpg" />
-                    <h2 class="username-header"></h2>
-                </div>
-                <div class="profile-detail"></div>
+                <section class="info-section">
+                    <div class="profile-header">
+                        <img id="avatar-img" class="avatar" alt="avatar" src="/assets/avatar.jpg" />
+                        <h2 class="username-header"></h2>
+                    </div>
+                    <div class="profile-detail"></div>
+                </section>
+                <div class="profile-bio"></div>
             </section>
-            <div class="profile-bio"></div>
-            <form class="message-form">
-                <label>
-                    <p>Post to <span class="username"></span>'s Message Feed</p>
-                    <input name="message" />
-                </label>
-                <button type="submit">Send Message</button>
-            </form>
-            <div class="profile-messages"></div>
+            <section class="messages-section">
+                <form class="message-form">
+                    <label>
+                        <p>Post to <span class="username"></span>'s Message Feed</p>
+                        <input name="message" />
+                    </label>
+                    <button type="submit">Send Message</button>
+                    <h3 class="message-feed-for"></h3>
+                </form>
+                <div class="profile-messages"></div>
+            </section>
         </main>
     </body>
 </html>

@@ -25,13 +25,8 @@ export function renderProfile(profileObject) {
 
 export function renderMessages(profile) {
     const ul = document.createElement('ul');
-    const header = document.createElement('h3');
-
-    header.textContent = `Message Feed for ${profile.username}`;
 
     ul.classList.add('messages');
-
-    ul.append(header);
 
     for (let i = 0; i < profile.messages.length; i++) {
         // for (let i = profile.messages.length -1; i > -1; i--)
@@ -44,7 +39,7 @@ export function renderMessages(profile) {
 
         const senderSpan = document.createElement('span');
         senderSpan.classList.add('from');
-        senderSpan.textContent = profile.messages[i].sender;
+        senderSpan.textContent = `${profile.messages[i].sender} - `;
 
         const dateSpan = document.createElement('span');
         dateSpan.classList.add('created-date');

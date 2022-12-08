@@ -12,6 +12,7 @@ import { renderMessages } from '../render-utils.js';
 
 const imgEl = document.querySelector('#avatar-img');
 const usernameHeaderEl = document.querySelector('.username-header');
+const messageFeedEl = document.querySelector('.message-feed-for');
 const profileDetailEl = document.querySelector('.profile-detail');
 const profileBioEl = document.querySelector('.profile-bio');
 const profileMessagesEl = document.querySelector('.profile-messages');
@@ -21,7 +22,6 @@ const messageForm = document.querySelector('.message-form');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
-
 
 window.addEventListener('load', async () => {
     //Error Handling
@@ -77,6 +77,7 @@ async function fetchAndDisplayProfile() {
     usernameHeaderEl.textContent = profile.username;
     titleEl.textContent = `${profile.username}'s Profile`;
     usernameEl.textContent = profile.username;
+    messageFeedEl.textContent = `Message Feed for ${profile.username}`;
 
     const profileSparkles = renderSparkles(profile);
     const profileBio = renderBio(profile);
