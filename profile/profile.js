@@ -1,3 +1,4 @@
+import '../auth/user.js';
 import {
     createMessage,
     decrementSparkles,
@@ -5,6 +6,7 @@ import {
     getProfileByUser,
     getUser,
     incrementSparkles,
+    onMessage,
 } from '../fetch-utils.js';
 import { renderMessages } from '../render-utils.js';
 
@@ -19,7 +21,7 @@ const messageForm = document.querySelector('.message-form');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
-// const user = getUser();
+
 
 window.addEventListener('load', async () => {
     //Error Handling
@@ -30,6 +32,12 @@ window.addEventListener('load', async () => {
         return;
     }
     fetchAndDisplayProfile();
+
+    onMessage(id, async (payload) => {
+        // eslint-disable-next-line no-console
+        console.log(payload);
+        fetchAndDisplayProfile();
+    });
 });
 
 messageForm.addEventListener('submit', async (e) => {
