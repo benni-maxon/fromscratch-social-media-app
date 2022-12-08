@@ -56,6 +56,7 @@ messageForm.addEventListener('submit', async (e) => {
             sender: senderProfile.data.username,
             recipient_id: id,
             user_id: user.id,
+            sender_avatar: senderProfile.data.avatar_url,
         });
         messageForm.reset();
     }
@@ -68,7 +69,6 @@ async function fetchAndDisplayProfile() {
     titleEl.textContent = '';
 
     const profile = await getProfileById(id);
-    const sender = await getProfileByUser(user.id);
     console.log('profile', profile);
     if (profile.avatar_url) {
         imgEl.src = profile.avatar_url;
@@ -81,7 +81,7 @@ async function fetchAndDisplayProfile() {
     messageFeedEl.textContent = `Message Feed for ${profile.username}`;
     const profileSparkles = renderSparkles(profile);
     const profileBio = renderBio(profile);
-    const messagesList = renderMessages(profile, sender);
+    const messagesList = await renderMessages(profile);
 
     profileDetailEl.append(profileSparkles);
     profileBioEl.append(profileBio);

@@ -26,12 +26,13 @@ export function renderProfile(profile) {
     return a;
 }
 
-export function renderMessages(profile, sender) {
+export async function renderMessages(profile) {
     const ul = document.createElement('ul');
 
     ul.classList.add('messages');
 
     for (let i = 0; i < profile.messages.length; i++) {
+        console.log(profile, 'profile');
         // for (let i = profile.messages.length -1; i > -1; i--)
         // console.log('i', profile.messages[i]);
         const li = document.createElement('p');
@@ -45,11 +46,10 @@ export function renderMessages(profile, sender) {
         // img.src = profile.messages[i].sender;
         // img.alt = 'avatar';
 
-        console.log(sender);
-        console.log(sender.data.avatar_url);
+        // console.log(sender.data.avatar_url);
 
-        if (sender.data.avatar_url) {
-            img.src = sender.data.avatar_url;
+        if (profile.messages[i].sender_avatar) {
+            img.src = profile.messages[i].sender_avatar;
         } else {
             img.src = '/assets/sadface.png';
         }
