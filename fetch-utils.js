@@ -104,3 +104,19 @@ export async function createMessage(message) {
 export function onMessage(profileId, handleMessage) {
     client.from(`messages:recipient_id=eq.${profileId}`).on('INSERT', handleMessage).subscribe();
 }
+
+export function redirectIfNoProfile(profile) {
+    if (!profile) {
+        location.replace('../profile-editor');
+    }
+}
+
+export async function fetchCurrentUser() {
+    const response = await client
+        .from('profiles')
+        .select()
+        .match({ user_id: client.auth.user().id })
+        .single();
+
+    return checkError(response);
+}
