@@ -78,7 +78,6 @@ async function fetchAndDisplayProfile() {
     titleEl.textContent = `${profile.username}'s Profile`;
     usernameEl.textContent = profile.username;
     messageFeedEl.textContent = `Message Feed for ${profile.username}`;
-
     const profileSparkles = renderSparkles(profile);
     const profileBio = renderBio(profile);
     const messagesList = renderMessages(profile);

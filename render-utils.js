@@ -1,4 +1,4 @@
-export function renderProfile(profileObject) {
+export function renderProfile(profile) {
     const a = document.createElement('a');
     const img = document.createElement('img');
     const p = document.createElement('p');
@@ -9,15 +9,16 @@ export function renderProfile(profileObject) {
     h3.classList.add('profile-link');
     p.classList.add('list-sparkle');
 
-    if (profileObject.avatar_url) {
-        img.src = profileObject.avatar_url;
+    if (profile.avatar_url) {
+        img.src = profile.avatar_url;
     } else {
         img.src = '/assets/sadface.png';
     }
+
     img.alt = 'avatar';
-    p.textContent = `✨${profileObject.sparkles}`;
-    h3.textContent = `${profileObject.username}`;
-    a.href = `../profile/?id=${profileObject.id}`;
+    p.textContent = `✨${profile.sparkles}`;
+    h3.textContent = `${profile.username}`;
+    a.href = `../profile/?id=${profile.id}`;
 
     a.append(img, h3, p);
     return a;
@@ -36,6 +37,18 @@ export function renderMessages(profile) {
 
         const div = document.createElement('div');
         div.classList.add('message-info');
+
+        // const img = document.createElement('img');
+        // img.classList.add('avatar-thumbnail');
+        // img.src = profile.messages[i].sender;
+        // img.alt = 'avatar';
+
+        // if (profile.data.avatar_url) {
+        //     img.src = profile.data.avatar_url;
+        // } else {
+        //     img.src = '/assets/sadface.png';
+        // }
+        // img.alt = 'avatar';
 
         const senderSpan = document.createElement('span');
         senderSpan.classList.add('from');
