@@ -22,9 +22,8 @@ section {
     border: solid 2px #ecbcfd;
     border-radius: 20px;
     padding: 15px;
-    max-height: 500px;
+    height: 500px;
 }
-
 .profile-messages {
     overflow-y: scroll;
     max-height: 320px;
@@ -71,8 +70,11 @@ section {
     background-color: #ffcbf2;
     border: solid 2px #c0fdff;
     border-radius: 10px;
-    margin: 5px;
+    margin: 5px 5px 5px 15px;
+    max-width: 515px;
     padding: 10px;
+    overflow: scroll;
+    overflow-wrap: break-word;
 }
 
 button {
