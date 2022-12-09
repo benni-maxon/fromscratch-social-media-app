@@ -1,0 +1,99 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    margin: 10px;
+}
+
+.info-section {
+    display: flex;
+    border: dotted 10px #e2afff;
+}
+
+.messages-section {
+    background-color: #c8e7ff;
+    border: solid 2px #ecbcfd;
+    border-radius: 20px;
+    padding: 15px;
+    height: 600px;
+    width: 300px;
+}
+.profile-messages {
+    overflow-y: scroll;
+    max-height: 320px;
+    margin-top: 5px;
+    border-top: dotted 3px #e2afff;
+}
+
+.profile-detail {
+    background-color: #c0fdff;
+    border: solid 2px #ecbcfd;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    height: fit-content;
+}
+.profile-name {
+    text-align: center;
+    font-size: 1.15em;
+}
+.profile-header {
+    text-align: center;
+}
+
+.avatar {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+}
+
+.avatar-thumbnail {
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+}
+
+.username-header {
+    margin: 0px 10px 10px 10px;
+    font-size: 2em;
+    letter-spacing: 0.1em;
+}
+
+.profile-sparkles {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.profile-bio {
+    background-color: #ffcbf2;
+    border: solid 2px #c0fdff;
+    border-radius: 10px;
+    margin: 5px 5px 5px 15px;
+    height: 220px;
+    max-width: 515px;
+    padding: 10px;
+    overflow: scroll;
+    overflow-wrap: break-word;
+}
+
+button {
+    border-radius: 5px;
+    background-color: #c8e7ff;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.message {
+    border-bottom: dotted 3px #e2afff;
+}
